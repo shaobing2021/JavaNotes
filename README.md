@@ -1,1 +1,25 @@
-# JavaNotes
+# JAVA学习笔记
+
+1. JAVA基础
+   * JAVA概述
+   * 集合
+   * JAVA8
+   * 输入与输出
+   * 网络
+   * 反射与注解
+2. 数据结构与算法
+   * 剑指Offer
+3. 数据库
+   * Mysql
+   * Redis
+4. 框架
+   * Spring
+   * SpringMvc
+   * Mybatis
+   * SpringBoot
+5. 底层必备
+   * JVM
+   * Linux
+   * 操作系统
+   * 计算机网络
+   * 设计模式
