@@ -144,3 +144,35 @@ map中key都是不可重复的，因此，Set天然具有“不可重复”的�
 | int indexOf(E e)     | 查询对象o的索引                        |
 | boolean contain(E e) | 判断是否包含某个元素                   |
 
+## 遍历
+
+增强for循环用的也是迭代器，所以不能便遍历边通过容器删除，只能通过迭代器删除
+
+```
+public static void main(String[] args) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        Iterator<Integer> iter = list.iterator();
+//        while (iter.hasNext()){
+//            Integer temp = iter.next();
+//            list.remove(temp);
+//        }
+//        for (Integer integer : list) {
+//            list.remove(integer);
+//        }
+//        for (int i = 0; i < list.size(); i++) {
+//            Integer integer = list.get(i);
+//            System.out.println(integer);
+//            list.remove(integer);
+//            i--;
+//        }
+        while (iter.hasNext()){
+            Integer next = iter.next();
+            System.out.println(next);
+            iter.remove();
+        }
+    }
+```
+

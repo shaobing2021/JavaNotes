@@ -632,7 +632,7 @@ public class ReaderWriterTest {
 
 ##### 方式一
 
-```
+```java
  Scanner scanner = new Scanner(System.in);
         while (true){
             System.out.println("input String:");
@@ -649,7 +649,7 @@ public class ReaderWriterTest {
 
 利用bufferedread.readLine方法
 
-```
+```java
 public static void main(String[] args) {
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);
@@ -683,7 +683,7 @@ public static void main(String[] args) {
 
 #### 1.打印流
 
-```
+```java
  @Test
     public void test2() {
         PrintStream ps = null;

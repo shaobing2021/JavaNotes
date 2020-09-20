@@ -14,7 +14,7 @@ git config --global user.email 403001592@qq.com
 3. git init  
 4. git add .  
 5. git commit -m “tijiao”
-6. git remote add origin 
+6. git remote add origin  https://github.com/shaobing2021/JavaCode.git
 7. git push origin master
 
 ## 再次上传

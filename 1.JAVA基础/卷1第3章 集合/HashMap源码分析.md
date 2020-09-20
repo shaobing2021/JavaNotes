@@ -62,8 +62,6 @@ static class Node<K, V> implements Entry<K, V> {
 11. 阈值，超过即扩容 `int threshold;`
 12. 负载数 容量*负载因子   即16*0.75`final float loadFactor;`
 
-
-
 #### Node节点
 
 ```
@@ -78,6 +76,7 @@ static class Node<K, V> implements Entry<K, V> {
             this.value = value;
             this.next = next;
         }
+        
 ```
 
 #### 构造方法分析
@@ -134,8 +133,6 @@ static final int tableSizeFor(int cap) {
 }
 ```
 
-
-
 #### put方法
 
 哈希值，key，Value，
@@ -148,6 +145,8 @@ static final int tableSizeFor(int cap) {
 
 ##### put函数
 
+* 首先获取hash值，根据哈希值，key，value放入
+
 ```java
 public V put(K key, V value) {
         return this.putVal(hash(key), key, value, false, true);
@@ -157,7 +156,7 @@ public V put(K key, V value) {
 ##### hash函数
 
 ```
-让Key的hash值的高16位参与运算
+让Key的hashcode值的高16位参与运算
 0b 0010 1010 1111 0101 0110 1010 0101 0010
 ^(不同为1，相同为0)
 0b 0000 0000 0000 0000 0010 1010 1111 0101 (0110 1010 0101 0010)
@@ -171,6 +170,11 @@ public V put(K key, V value) {
         int h;
         return key == null ? 0 : (h = key.hashCode()) ^ h >>> 16;
     }
+    
+    15%6==3
+    1 1 1 1
+    0 1 0 1
+    0 1 0 1
 ```
 
 ##### putVal函数
@@ -220,7 +224,7 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent, boolean evict) {
           //Case2.2如何判断p是否属于TreeNode？？
           else if (p instanceof HashMap.TreeNode) {
                 e = ((HashMap.TreeNode)p).putTreeVal(this, tab, hash, key, value);
-            } 
+            } 		
           //Case2.3
           else {
                 int binCount = 0;
@@ -268,7 +272,7 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent, boolean evict) {
 
 #### resize函数
 
-```
+```java
  final HashMap.Node<K, V>[] resize() {
  				//oldTab:引用扩容前的哈希表
         HashMap.Node<K, V>[] oldTab = this.table;
@@ -313,8 +317,6 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent, boolean evict) {
             float ft = (float)newCap * this.loadFactor;
             newThr = newCap < 1073741824 && ft < 1.07374182E9F ? (int)ft : 2147483647;
         }
-
-
 			//真正的扩容操作
         this.threshold = newThr;
         //创建一个更长的数组，也有可能第一次创建数组
@@ -344,7 +346,6 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent, boolean evict) {
                      //高位链表：存放扩容之后的数组下标位置+扩容长度与当前数组下标位置一致
                         HashMap.Node<K, V> hiHead = null;
                         HashMap.Node hiTail = null;
-
                         HashMap.Node next;
                         do {
                             next = e.next;

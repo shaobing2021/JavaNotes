@@ -33,8 +33,6 @@
                                                initialCapacity);
         }
     }
-
-
    /**
     *构造包含指定collection元素的列表，这些元素利用该集合的迭代器按顺序返回
     *如果指定的集合为null，throws NullPointerException。 
@@ -60,12 +58,10 @@
         this.add(e, this.elementData, this.size);
         return true;
     }
-    
     private void add(E e, Object[] elementData, int s) {
         if (s == elementData.length) {
             elementData = this.grow();
         }
-
         elementData[s] = e;
         this.size = s + 1;
     }
