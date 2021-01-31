@@ -898,3 +898,15 @@ pstreee -pu
 #杀掉某个进程
 kill -9 进程ID
 ```
+
+### 7.网络问题
+
+```
+#当发现linux没有ens33
+ifconfig ens33 up
+systemctl stop NetworkManager
+systemctl disable NetworkManager
+ifup ens33
+systemctl restart network.service
+```
+

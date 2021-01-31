@@ -117,7 +117,6 @@ public class Demo {
     //本地方法栈native method  调用本地接口JNI，使用本地方法库，扩展java使用，融合
     public native void start();
 }
-
 ```
 
 #### 数据区详解

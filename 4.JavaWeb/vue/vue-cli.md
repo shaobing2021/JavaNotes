@@ -159,7 +159,7 @@ h1{
 
 ## 回调this
 
-```
+```html
 created(){
 	const that = this //这个this代表vue对象
 	res=>

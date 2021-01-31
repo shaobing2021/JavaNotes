@@ -163,8 +163,6 @@ public V put(K key, V value) {
 0b 0010 1010 1111 0101 0100 0000 1010 0111 
 ```
 
-
-
 ```
  static final int hash(Object key) {
         int h;
@@ -203,8 +201,6 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent, boolean evict) {
         if ((tab = this.table) == null || (n = tab.length) == 0) {
             n = (tab = this.resize()).length;
         }
-
-       
         int i;
         //2.寻找当前要插入的数组位置，如果刚好是null，则直接插入
       	//如果此处p！=null，则是要插入位置的元素
@@ -374,8 +370,6 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent, boolean evict) {
 
                             e = next;
                         } while(next != null);
-
-
 												//这里考虑的情况是：一条链表拆成两条，最后一个元素在高位，那么低位就会由元素指向高位元素，需要置为null
                         if (loTail != null) {
                             loTail.next = null;
@@ -534,8 +528,6 @@ final HashMap.Node<K, V> removeNode(int hash, Object key, Object value, boolean 
 
 #### Replace函数
 
-
-
 ```
  public boolean replace(K key, V oldValue, V newValue) {
         HashMap.Node e;
@@ -550,9 +542,7 @@ final HashMap.Node<K, V> removeNode(int hash, Object key, Object value, boolean 
     }
 ```
 
-```
 
-```
 
 ```
 public V replace(K key, V value) {
