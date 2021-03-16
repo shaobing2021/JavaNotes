@@ -21,7 +21,8 @@ git config --global user.email 403001592@qq.com
 
 ```cmd
 git pull
-git add .  
+
+gitb add .  
 git commit -m “tijiao”
 git push origin master
 ```
