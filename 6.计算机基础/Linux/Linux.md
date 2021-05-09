@@ -3,7 +3,6 @@
 ```
 deb https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse
 deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse
-
 deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
 deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
 
@@ -102,8 +101,6 @@ deb http://cn.archive.ubuntu.com/ubuntu/ boinc-updates main restricted universe 
 deb http://cn.archive.ubuntu.com/ubuntu/ boinc-backports main restricted universe multiverse
 ```
 
-
-
 ### 1.前期准备
 
 [Linux博客](https://blog.csdn.net/qq_33369905/article/details/106647311)
@@ -189,8 +186,6 @@ halt # 关闭系统，等同于shutdown –h now 和 poweroff
 #查看系统版本
 cat /etc/rehad-release
 ```
-
-
 
 ### 3.处理目录常用命令
 

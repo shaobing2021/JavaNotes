@@ -1,9 +1,14 @@
----
+[千峰教育](https://www.bilibili.com/video/BV1pb41127TG?p=2)
+
+
+
+
+
 typora-copy-images-to: pictures
 typora-root-url: pictures
----
+
 [toc]
-# 本节课程目标
+
 
 - 了解shell中的通配符
 - 熟悉grep、cut、sort等小工具和shell中的通配符的使用

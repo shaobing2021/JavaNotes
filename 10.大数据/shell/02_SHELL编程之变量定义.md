@@ -208,6 +208,75 @@ hello world
 
 # ==二、变量的定义==
 
+### 笔记
+
+> 定义变量
+
+```shell
+#方式一赋值
+#/bin/bash
+ip=192.168.56.1
+ping -c1 $ip &>/dev/null && echo "$ip is up"||echo "$ip is down"
+if ping -c1 $ip&>/dev/null;then
+    echo "$ip is up"
+else
+    echo "$ip is down"
+fi
+
+
+ping -c1 $ip &>/dev/null
+if [ $? -eq 0 ];then
+    echo "$ip is up"
+else
+    echo "$ip is down"
+fi
+
+#方式二键盘读入
+#/bin/bash
+#这里ip之前必须加空格
+read -p "Please input a ip:" ip
+ping -c1 $ip &>/dev/null
+if [ $? -eq 0 ];then
+    echo "$ip is up"
+else
+    echo "$ip is down"
+fi
+
+#方式三：传入参数
+#/bin/bash
+ping -c1 $1 &>/dev/null
+if [ $? -eq 0 ];then
+    echo "$1 is up"
+else
+    echo "$1 is down"
+fi
+```
+
+> 全局变量
+
+```
+可以采用. ./文件名 方式加载变量
+
+#/bin/bash
+[ -f test04.sh ]&&echo "exist"
+#子shell，当前shell执行
+source或者使用. /home/shaobing/shell-05/test04.sh
+echo $ip
+echo $cur
+
+#查看系统变量
+[root@k8smaster shell-05]# vim /etc/profile
+#查看环境变量
+[root@k8smaster shell-05]# env
+
+
+#变量
+${ip}new 意义在于输出3.3new
+${#ip}输出ip位数
+```
+
+
+
 ## 1. 变量是什么？
 
 一句话概括：变量是用来临时保存数据的，该数据是可以变化的数据。
@@ -226,6 +295,12 @@ hello world
 变量值：就是临时的可变化的数据
 
 ```powershell
+[root@k8smaster shell-05]# type if
+if 是 shell 关键字
+[root@k8smaster shell-05]# type -a fi
+fi 是 shell 关键字
+
+
 [root@MissHou ~]# A=hello			定义变量A
 [root@MissHou ~]# echo $A			调用变量A，要给钱的，不是人民币是美元"$"
 hello
@@ -553,7 +628,7 @@ vim /etc/profile 或者 ~/.bashrc
 export A=hello
 或者
 A=hello
-export A
+export A   //export A=hello
 说明：系统中有一个变量PATH，环境变量
 export PATH=/usr/local/mysql/bin:$PATH
 ~~~
