@@ -28,7 +28,7 @@ typora-root-url: ..\..\pictures
 
 计算机只能认识（识别）机器语言(0和1)，如（11000000 这种）。但是，我们的程序猿们不能直接去写01这样的代码，所以，要想将程序猿所开发的代码在计算机上运行，就必须找"人"（工具）来==翻译成机器语言==，这个"人"(工具)就是我们常常所说的**==编译器==**或者**==解释器==**。
 
-![编译和解释型语言区别](/../10.大数据/shell/pictures/编译和解释型语言区别.png)
+![编译和解释型语言区别](https://gitee.com/shaobing2021/typora/raw/master/img/20210529164602.png)
 
 ##1. 编程语言分类
 
@@ -40,7 +40,7 @@ typora-root-url: ..\..\pictures
 
 ​    程序不需要编译，程序在运行时由**==解释器==**翻译成机器语言，每执行一次都要翻译一次。因此效率比较低。比如Python/JavaScript/ Perl /ruby/==Shell==等都是解释型语言。
 
-![./语言分类](/../10.大数据/shell/pictures/语言分类.png)
+![./语言分类](https://gitee.com/shaobing2021/typora/raw/master/img/20210529164603.png)
 
 - **总结**
 
@@ -48,7 +48,7 @@ typora-root-url: ..\..\pictures
 
 ## 2. shell简介
 
-![](/../10.大数据/shell/pictures/00_shell介绍.png)
+![](https://gitee.com/shaobing2021/typora/raw/master/img/20210529164604.png)
 
 **总结：**
 
@@ -70,7 +70,7 @@ typora-root-url: ..\..\pictures
 
 ## 3. shell脚本
 
-![](/../10.大数据/shell/pictures/01_shell介绍.png)
+![](https://gitee.com/shaobing2021/typora/raw/master/img/20210529164605.png)
 
 ### ㈠ 什么是shell脚本？
 
@@ -161,7 +161,6 @@ echo "hello world"
 [root@MissHou shell01]# /shell01/first_shell.sh
 或者
 [root@MissHou shell01]# ./first_shell.sh
-
 注意：标准执行方式脚本必须要有可执行权限。
 ```
 
@@ -273,6 +272,20 @@ echo $cur
 #变量
 ${ip}new 意义在于输出3.3new
 ${#ip}输出ip位数
+```
+
+> 预定义变量
+
+[$*和$@区别](https://blog.csdn.net/f2157120/article/details/105649551)
+
+```
+$0  脚本名
+$* 所有参数
+$@ 所有参数
+$# 参数个数  $# -eq 0   不包括$#
+$$ 当前进行pid  
+$! 上一个后台进程PID
+$? 上一个命令的返回值
 ```
 
 
