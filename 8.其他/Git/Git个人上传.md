@@ -62,3 +62,9 @@ You can initialize this repository with code from a Subversion, Mercurial, or TF
  git clone https://github.com/shaobing2021/code.git
 ```
 
+
+
+```
+git clone --depth=1 
+```
+
