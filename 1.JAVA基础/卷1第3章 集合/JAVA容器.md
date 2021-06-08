@@ -14,8 +14,8 @@
 
 #### 作用
 
-* 可以当作栈来使用add，remove(list.size()-1)
-* 可以当作队列使用add，remove(0)
+* 可以当作栈来使用add，remove(list.size()-1)，先进后出，
+* 可以当作队列使用add，remove(0)，先进先出
 * 同样可以当作双端队列
 
 #### 子类

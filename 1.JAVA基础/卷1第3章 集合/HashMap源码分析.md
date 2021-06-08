@@ -10,7 +10,7 @@
 
 2. Node数据结构分析
 
-```
+```java
 static class Node<K, V> implements Entry<K, V> {
         final int hash;
         final K key;

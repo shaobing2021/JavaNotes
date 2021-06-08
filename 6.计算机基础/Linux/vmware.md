@@ -18,3 +18,9 @@ systemctl start network.service
 
 3.如果是vmnet1或vmnet8则应该将ens33修改成一致
 
+## 桥接模式和NAT
+
+桥接模式：虚拟机和宿主机加真实路由器形成网络
+
+nat：虚拟机和宿主机vmnet网络和虚拟网卡组成一个网段，宿主机和真实网络形成另一个网段
+
