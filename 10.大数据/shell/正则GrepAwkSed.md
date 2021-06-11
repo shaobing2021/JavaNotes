@@ -27,7 +27,40 @@ GATEWAY=192.168.11.2
 [root@k8smaster shell-05]# egrep '[[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3}' /etc/sysconfig/network-scripts/ifcfg-ens33 
 ```
 
-## 元字符
+### 三种grep区别
+
+grep:使用基本元字符集，^,$,.,*,【】，\\<\\>.\\(\\),\\\{\\},\+,\|
+
+egrep:使用扩展元字符?,+，{}，｜，（）
+
+grep也可以使用扩展集中的元字符，仅需对这些元字符前置反斜线
+
+\w。 所有字母与数字，称为字符[a-zA-Z0-9].  'l[a-zA-Z0-9]*ve'. 'l\\w\*ve'
+
+\W.  所有字母与数字之外的字符，称为非字符， 'love[\^a-zA-Z0-9]+'. 'love\\W\+'
+
+\b.  词边界。   '\\<\love\>'    '\blove\b'。 词首词尾   即grep '\bro\b' passwpord. 只会过滤包含ro的
+
+### grep学习
+
+```
+#为什么说推荐加''，如grep bash shell /etc/passwd 可能被以为过滤bash，从shell以及/etc/passwd
+grep '^root' /etc/passwd /etc/shadow
+#-q不输出查找到的文件
+grep -q '^root' /etc/passwd
+#echo $?
+0表示成功找到
+1表示没找到
+2表示后缀文件名有问题，没有该文件
+#帮助文档
+man grep
+#过滤目录
+ll |grep '^d'
+```
+
+
+
+## 基本元字符
 
 shell元字符也称为通配符  
 
@@ -90,10 +123,8 @@ zot
 
 ### 转义元字符
 
-
-
-```
-\  用来转义元字符，是特殊字符失去作用
+```powershell
+\  用来转义元字符，使特殊字符失去作用
 [root@k8smaster shell-05]# grep "t.t" test523.txt 
 tot
 t.t
@@ -137,16 +168,75 @@ root
 root
 ```
 
-### 扩展正则表达式元字符
+## egrep和grep区别以及fgrep
 
-```
+Grep:在文件中全局查找指定的正则表达式，并打印所有包含该表达式的行
+
+egrep：扩展的grep，支持更多的正则表达式
+
+fgrep：固定grep，有时也被称作快速fast grep，按字面解释所有字符
+
+```powershell
 注意一点grep不支持元字符，要想支持使用egrep
+实验：
+(f|g)ile
+this is file;
+[root@k8smaster test06]# grep '(f|g)ile' 9.txt
+(f|g)ile
+[root@k8smaster test06]# egrep '(f|g)ile' 9.txt
+this is file;
+[root@k8smaster test06]# egrep '\(f\|g\)ile' 9.txt
+(f|g)ile
+[root@k8smaster test06]# grep '\(f\|g\)ile' 9.txt
+this is file;
+```
 
+## 扩展正则表达式元字符
+
+```powershell
+#*   n*。 表示n出现0到n次
+
+#+ 匹配一个或多个前导字符    [a-z]+ove
+[root@k8smaster test06]# egrep 'ro+t' /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+operator:x:11:0:operator:/root:/sbin/nologin
+
+#? 匹配零个或一个前导字符。    lo？ve
+[root@k8smaster test06]# egrep 'ro?t' /etc/passwd
+abrt:x:173:173::/etc/abrt:/sbin/nologin
+rtkit:x:172:172:RealtimeKit:/proc:/sbin/nologin
+
+#a|b. 或的意思   \>结尾
+[root@k8smaster test06]# ss -an |egrep ':80|:22\>'
+tcp    LISTEN     0      128       *:22                    *:*
+tcp    ESTAB      0      0      192.168.0.130:22                 192.168.0.103:64952
+tcp    LISTEN     0      128    [::]:80                 [::]:*
+tcp    LISTEN     0      128    [::]:22                 [::]:*
+
+#()  组字符  (ov)+   ov一起出现一次或者多次  ov+ v出现一次或者多次
+#(...)(...)\1\2标签匹配字符。(love)able\1er. \1指括号出现的内容
+
+#x{m}  x重复m次
+#x{m,}  x重复至少m次
+#x{m,n}  x重复m到n次。 
+```
+
+## posix字符类
+
+```powershell
+[:alnum:]   字母与数字字符。  [[:alnum:]]+，{4},*,?,{5,},
+[:alpha:]		字母字符（包括大小写字母）
+[:blank:]		空格与制表符
+[:digit:]		数字字母
+[:lower:]		小写字母
+[:upper:]		大写字母
+[:punct:]		标点符号
+[:space:]		包括换行符，回车等在内的所有空白
 ```
 
 
 
-### alias
+## alias
 
 ```
 [root@k8smaster ~]# alias
