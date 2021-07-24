@@ -1594,8 +1594,7 @@ public class InputFile2 {
         return Files.lines(Paths.get(fname));
     }
 
-    public static void
-    main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         new InputFile2("InputFile2.java").getLines()
                 .skip(15)
                 .limit(1)
@@ -2003,7 +2002,6 @@ C++ 的异常说明不属于函数的类型信息。编译时唯一要检查的�
 在解释为什么“函数没有异常说明就表示可以抛出任何异常”的时候，Stroustrup 这样认为：
 
 > “但是，这样一来几乎所有的函数都得提供异常说明了，也就都得重新编译，而且还会妨碍它同其他语言的交互。这样会迫使程序员违反异常处理机制的约束，他们会写欺骗程序来掩盖异常。这将给没有注意到这些异常的人造成一种虚假的安全感。”
->
 
 我们已经看到这种破坏异常机制的行为了-就在 Java 的“被检查的异常”里。
 
@@ -2195,5 +2193,116 @@ James  创造了一个对象。理想的情况下。对象创建不会导致潜�
 Go 团队采取了大胆的举动，质疑所有这些，并说，“让我们毫无例外地尝试它，看看会发生什么。”是的，这意味着你通常会在发生错误的地方处理错误，而不是最后将它们聚集在一起 try 块。但这也意味着关于一件事的代码是本地化的，也许这并不是那么糟糕。这也可能意味着您无法轻松组合常见的错误处理代码（除非您确定了常用代码并将其放入函数中，也不是那么糟糕）。但这绝对意味着您不必担心有多个可能的执行路径而且所有这些都需要。
 
 <!-- 分页 -->
+
+# 异常笔记
+
+## 博客
+
+[关于运行异常是否中止的说明](https://www.cnblogs.com/wangyingli/p/5912269.html)
+
+## 异常介绍
+
+运行时异常：必须停止以修正错误
+
+![运行时异常](https://images2015.cnblogs.com/blog/820353/201609/820353-20160927114420141-613111357.jpg)
+
+非运行时异常：必须进行处理，否则无法编译
+
+![非运行时异常](https://images2015.cnblogs.com/blog/820353/201609/820353-20160927114440360-54700140.jpg)
+
+## 异常捕获
+
+```powershell
+package com.shaobing.TWO;
+
+import com.rabbitmq.client.CancelCallback;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.DeliverCallback;
+import com.shaobing.utils.RabbitMqUtils;
+
+import java.io.IOException;
+import java.util.Queue;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * 一个线程
+ */
+public class Worker01 {
+    public static final String QUEUE_NAME = "hello";
+
+
+    public static void main(String[] args) {
+        Channel channel = RabbitMqUtils.getChannel();
+        //接受消息
+        DeliverCallback deliverCallback = (consumerTag,message)->{
+            try {
+                System.out.println("开始睡眠");
+                Thread.sleep(1000);
+                int i = 1/0;
+                //注意此处使用了Exception，所以异常被捕捉到了，将会执行catch内容及消息Work01内容
+                //若此处只抛出sleep中异常，将不会被捕捉
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println(message.getBody());
+            }
+            System.out.println("消息Work01："+new String(message.getBody()));
+        };
+        CancelCallback cancelCallback = (consumerTag)->{
+            System.out.println(consumerTag+"消息Work01:回调内容");
+        };
+        try {
+            System.out.println("C1等待接受消息");
+            //接受消息完毕，就自动应答，但是存在可能处理过程中消息丢失，因此不能自动应答
+            channel.basicConsume(QUEUE_NAME,true,deliverCallback,cancelCallback);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+
+
+* 当捕捉到异常，try后面的内容不会执行，然后执行catch内容，执行return中语句，但是不会return，最后执行finalyy并返回
+
+* Return 优先级。 finally>catch>try>外面的
+
+* 注意外面有return则finally不能有return，因为finally必执行。或者try和catch里面不能同时有return，因为try正常会返回，异常会由catch返回
+* 若异常没有捕获，则会导致程序异常，退出运行
+
+```powershell
+package com.shaobing.TWO;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+
+public class ExceptionTest {
+    public static void main(String[] args) {
+        int t = t();
+        System.out.println(t);
+    }
+    public static int t(){
+        int j=0;
+        try{
+            System.out.println(j+"-");
+            int i=1/0;
+            System.out.println(j+"a");
+            FileInputStream fis = new FileInputStream("");
+            fis.close();
+            return ++j;
+//        }catch (IOException e){
+        }catch (Exception e){
+            System.out.println(j+"b");
+            return ++j;
+        }finally {
+            System.out.println(j+"c");
+            return ++j;
+        }
+    }
+}
+0-  0b   1c  2
+```
+
+
 
 <div style="page-break-after: always;"></div>

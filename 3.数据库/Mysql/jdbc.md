@@ -1071,8 +1071,6 @@ public class JdbcTemplateDemo2 {
 
 ```
 
-
-
 ##### 结论
 
 无论使用什么数据源，本质还是一样，Datasource接口不会变，方法就不会变

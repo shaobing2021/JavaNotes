@@ -34,6 +34,12 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.6</version>
         </dependency>
+      
+      <dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>druid</artifactId>
+    <version>1.1.23</version>
+</dependency>
         <!--Mybatis-->
         <dependency>
             <groupId>org.mybatis</groupId>
