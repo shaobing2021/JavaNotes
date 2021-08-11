@@ -111,8 +111,7 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--自动扫描包，让该包下的注解生效，由IOC统一
-    管理-->
+    <!--自动扫描包，让该包下的注解生效，由IOC统一管理-->
     <context:component-scan
             base-package="com.roosevelt.controller"/>
     <!--解决json数据可能出现的乱码问题，造成原因，ObjectMapper-->

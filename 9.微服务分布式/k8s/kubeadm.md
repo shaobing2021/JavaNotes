@@ -33,7 +33,7 @@ Loaded plugins: langpacks, versionlock
 #备份源
 [root@shaobing ~]# mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
 #下载新的centos-base
-[root@shaobing ~]# wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
+[root@shaobing ~]# wget -O /etc/yum.repos.d/CentOS-Base.repo \ https://mirrors.aliyun.com/repo/Centos-7.repo
 --2020-08-22 13:28:23--  https://mirrors.aliyun.com/repo/Centos-7.repo
 #生成缓存
 [root@shaobing ~]# yum makecache

@@ -158,6 +158,10 @@ map中key都是不可重复的，因此，Set天然具有“不可重复”的�
 | int indexOf(E e)     | 查询对象o的索引                        |
 | boolean contain(E e) | 判断是否包含某个元素                   |
 
+### ConcurrentLinkedDeque
+
+SpringMvc注解驱动中SpringMvc整合用到
+
 ## 遍历
 
 增强for循环用的也是迭代器，所以不能便遍历边通过容器删除，只能通过迭代器删除

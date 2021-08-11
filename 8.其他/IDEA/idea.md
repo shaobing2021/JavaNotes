@@ -37,6 +37,13 @@ gbk
 
 open然后选择maven
 
+## 新建项目
+
+### 新建web项目
+
+* 方式一：File-->new-->Project-->Java Enterprise
+* 方式二：File-->new-->Project-->Maven-->next-->对项目右键add Framwork
+
 ## 其他
 
 需要启动两个线程时候，2021版本：eidt configurations --> modify options -->allow multiple instances 其他版本 allow parallel run
