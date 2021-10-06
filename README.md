@@ -12,14 +12,29 @@
 3. 数据库
    * Mysql
    * Redis
-4. 框架
+   * PostGresql
+   * redis
+   * elasticsearch
+     * springboot/elasticsearch
+4. JavaWeb
+5. 框架
    * Spring
    * SpringMvc
    * Mybatis
    * SpringBoot
-5. 底层必备
-   * JVM
-   * Linux
+     * springboot/webMvc
+
+6. 计算机基础
    * 操作系统
    * 计算机网络
    * 设计模式
+   * jvm
+   * linux
+   * shell
+9.微服务分布式
+   * docker
+   * k8s
+   * netty
+   * rabbitmq
+     * springboot/rabbitmq
+10.大数据
