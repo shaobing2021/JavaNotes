@@ -6,15 +6,17 @@ RestToolKit
 
 Seque
 
+[ Mac 快捷键](https://blog.csdn.net/weixin_42196279/article/details/112823167)
+
 ## 快捷键
 
 * cmd+p。查看方法提示
 
 * ctrl+alt+l 对齐
 
-* shift+shift搜索类
+* shift+shift搜索类. Mac:ctrl+o.  
 
-* ctrl+o快速重写方法
+* ctrl+o快速重写方法.  Mac:win+o
 
 * alt+insert
 
@@ -47,3 +49,27 @@ open然后选择maven
 ## 其他
 
 需要启动两个线程时候，2021版本：eidt configurations --> modify options -->allow multiple instances 其他版本 allow parallel run
+
+
+
+```mermaid
+graph TD
+    a-->b
+    a-->c
+    b-->d
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
