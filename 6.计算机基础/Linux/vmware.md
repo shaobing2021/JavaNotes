@@ -2,9 +2,11 @@
 
 ### 常见问题
 
-1.虚拟机中ens33不见了
+1.虚拟机中ens33不见了,
 
 systemctl stop NetworkManager
+#注意此时若直接重启网络，会报错，所以先stop NetworkManager
+service network restart
 
 systemctl disable NetworkManager
 
