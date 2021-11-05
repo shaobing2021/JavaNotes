@@ -166,7 +166,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:springmvc-servlet.xml</param-value>
         </init-param>
-        <!--        起动级别1，服务器启动，他就启动-->
+        <!--         -->
         <load-on-startup>1</load-on-startup>
     </servlet>
     <!--    在springmvc中
@@ -1274,7 +1274,7 @@ public class AjaxController {
 ### 9.拦截器
 
 * 过滤器：servlet规范，对所有访问资源进行过滤
-* 拦截器：AOP思想运用，SpringMvc框架自己的，只会拦截访问的控制器方法，因此配到spring-servlet中
+* 拦截器：  到spring-servlet中
 
 applicationContext/spring-servlet.xml配置
 
@@ -1643,7 +1643,7 @@ public class HelloController {
     public String downloads(HttpServletResponse response , HttpServletRequest request) throws Exception{
         //要下载的图片地址
         String  path = request.getServletContext().getRealPath("/upload");
-        String  fileName = "基础语法.jpg";
+        String  fileName = " .jpg";
 
         //1、设置response 响应头
         response.reset(); //设置页面不缓存,清空buffer

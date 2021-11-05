@@ -1,0 +1,9 @@
+@@startuml 多线程学习
+class thread{
+    Thread(Runnable target, String name)//采用Runabble方式创建线程
+    {
+        Thread parent = currentThread();
+    }
+    init()
+}
+@@enduml

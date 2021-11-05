@@ -80,6 +80,47 @@ public class MyListener implements ServletContextListener {
 
 ```
 
+## RegistrationBean注册组件
+```java
+package com.shaobing.webmvc.servlet;
+
+import org.apache.tomcat.util.digester.ArrayStack;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+//默认true，保证依赖的组件是单实例，如果是false,则可能产生多个实例
+@Configuration(proxyBeanMethods = true)
+public class MyRegistConfig {
+    @Bean
+    public ServletRegistrationBean myServlet(){
+        MyServlet myServlet = new MyServlet();
+        return new ServletRegistrationBean(myServlet,"/my","/my02");
+    }
+
+    @Bean
+    public FilterRegistrationBean myFilter(){
+        MyFilter myFilter = new MyFilter();
+//        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(myFilter, myServlet());
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(myFilter);
+        filterRegistrationBean.setUrlPatterns(Arrays.asList("/my","/css/*"));
+//        过滤器拦截路径与servlet一致，方式一
+        return filterRegistrationBean;
+    }
+    @Bean
+    public ServletListenerRegistrationBean myListener(){
+        MyListener myListener = new MyListener();
+        return new ServletListenerRegistrationBean(myListener);
+    }
+}
+
+```
+
 ## 拦截过滤监听器
 ### 区别
 拦截器：面向切面编程，通常使用动态代理实现，只对action对应方法起作用而过滤器对所有的请求起作用，能够访问堆栈中的信息，action上下文
@@ -88,5 +129,13 @@ public class MyListener implements ServletContextListener {
 ### 流程
 web容器启动时，
 listener init-->filter init-->servlet init-->servlet doGet-->interceptor prehandler-->method-->interceptor posthandler
+
 web容器关闭时
 servlet destroy-->filter destroy-->listener destroy
+ 
+## 原理
+
+DispatcherServletAutoConfiguration（继承于ServletRegistrationBean）该类下注册DispatcherServletRegistrationBean，将DispatcherServlet进行注册，参考(RegistrationBean注册组件)
+DispatcherServlet对应配置文件WebMvcProperties
+
+问题：当容器中注册一个Myservlet，映射路径为/my时，而DispatcherServlet路径为/，此时后调用原则为精确优先原则
